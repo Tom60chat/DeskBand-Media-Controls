@@ -13,11 +13,10 @@ Not open source yet, as I don't yet know how licensing and copyrights work with 
 - Support all music players (Spotify, SoundCloud, Deezer, Chrome/Chromium based - Edge - Opera, etc)
 
 ## Screenshots
-![d](Store/Simple%202.png)
+![](Store/Simple%202.png)
 
-![](./Store/Player selector resize.png)
+![](Store/Player%20selector%20resize.png)
 
-![](Store/Media controls Resize.png)
+![](Store/Media%20controls%20Resize.png)
 
-![](Store/Player selector.png)
-
+![](Store/Player%20selector.png)
