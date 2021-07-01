@@ -12,8 +12,11 @@ Not open source yet, as I don't yet know how licensing and copyrights work with 
 - Control your music (Play, Pause, Previous, Next).
 - Support all music players (Spotify, SoundCloud, Deezer, Chrome/Chromium based - Edge - Opera, etc).
 - 1-click installation.
+- Support Windows Dark/Light Mode
 
 ## Installation
+Only works on Windows 10 version 1809 (build 17763) or newer
+
 - [Download](https://github.com/Tom60chat/DeskBand-Media-Controls/releases/tag/release) the installer.
 - Click on the install button.
 - Done.
