@@ -1,4 +1,4 @@
-# DeskBand-Media-Controls
+# DeskBand Media Controls
 Control your music from your taskbar.
 
 <img align="right" src="Store/Simple%202.png"/>
