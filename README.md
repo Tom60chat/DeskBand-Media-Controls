@@ -1,7 +1,7 @@
 # DeskBand Media Controls
 Control your music from your taskbar.
 
-<img align="right" src="Store/Simple%202.png"/>
+<img align="right" src="Store/Intro.gif"/>
 
 [Website](https://tom60chat.wixsite.com/katycorp/post/deskband-media-controls-1?lang=en)
 
