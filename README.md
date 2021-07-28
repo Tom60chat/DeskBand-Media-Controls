@@ -10,7 +10,7 @@ Not open source yet, as I don't yet know how licensing and copyrights work with 
 ## Features
 - Displays your music (Thumbnail, Title, Artist).
 - Control your music (Play, Pause, Previous, Next).
-- Support all music players (Spotify, SoundCloud, Deezer, Chrome/Chromium based - Edge - Opera, etc).
+- Support most music players (Spotify, SoundCloud, Deezer, Chrome/Chromium based - Edge - Opera, VLC, etc).
 - 1-click installation.
 - Support Windows Dark/Light Mode
 
@@ -33,4 +33,4 @@ It's totally okay not to trust me and you're right.
 
 Here is a link to VirusTotal to at least prove that it's not a virus
 
-[VirusTotal](https://www.virustotal.com/gui/file/901d96d4eaa57f3266bf4bcef36039b9c5c29aa9433c0a5a0b68b2b39f643197/detection)
+[VirusTotal](https://www.virustotal.com/gui/file/03540fca08629580ded155d36f1942ade2eafa4cbed5c00da96e83c801baefeb)
