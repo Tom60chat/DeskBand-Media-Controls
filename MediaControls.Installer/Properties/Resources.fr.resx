@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -156,5 +156,8 @@ Vous pouvez afficher ou masquer la barre d'outil en faisant :
   </data>
   <data name="Uninstalling..." xml:space="preserve">
     <value>Désinstallation...</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>Mettre à jour</value>
   </data>
 </root>
