@@ -117,10 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="MediaControls DLL" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\MediaControls.DeskBand.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="CloseExplorerQuestion" xml:space="preserve">
     <value>This will close all of your file explorer windows.</value>
   </data>
@@ -128,10 +124,10 @@
     <value>Continue?</value>
   </data>
   <data name="Error" xml:space="preserve">
-    <value>Error</value>
+    <value>❌ Error</value>
   </data>
   <data name="Install" xml:space="preserve">
-    <value>Install</value>
+    <value>⬇ Install</value>
   </data>
   <data name="InstallationSuccess" xml:space="preserve">
     <value>The installation was successful!
@@ -150,7 +146,7 @@ You can show or hide the toolbar by doing:
     <value>DeskBand Media Controls Installer</value>
   </data>
   <data name="Uninstall" xml:space="preserve">
-    <value>Uninstall</value>
+    <value>🗑 Uninstall</value>
   </data>
   <data name="UninstallationPrerequisites" xml:space="preserve">
     <value>Uninstallation prerequisites</value>
@@ -160,5 +156,15 @@ You can show or hide the toolbar by doing:
   </data>
   <data name="Uninstalling..." xml:space="preserve">
     <value>Uninstalling...</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="MediaControls DLL" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MediaControls.DeskBand.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Octokit DLL" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Octokit.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>🔄 Update</value>
   </data>
 </root>
