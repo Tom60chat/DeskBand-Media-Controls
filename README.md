@@ -31,6 +31,4 @@ Only works on Windows 10 version 1809 (build 17763) or newer
 ## Viruses
 It's totally okay not to trust me and you're right.
 
-Here is a link to VirusTotal to at least prove that it's not a virus
-
-[VirusTotal](https://www.virustotal.com/gui/file/03540fca08629580ded155d36f1942ade2eafa4cbed5c00da96e83c801baefeb)
+I put a link to VirusTotal to at least prove it's not a virus, in every version description.
