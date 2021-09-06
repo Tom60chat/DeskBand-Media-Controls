@@ -1,11 +1,10 @@
 # DeskBand Media Controls
-Control your music from your taskbar.
-
 <img align="right" src="Store/Intro.gif"/>
+Control your music from your taskbar.
 
 [Website](https://tom60chat.wixsite.com/katycorp/post/deskband-media-controls-1?lang=en)
 
-Not open source yet, as I don't yet know how licensing and copyrights work with open source.
+<!--Not open source yet, as I don't yet know how licensing and copyrights work with open source.-->
 
 ## Features
 - Displays your music (Thumbnail, Title, Artist).
