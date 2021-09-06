@@ -12,6 +12,7 @@ Control your music from your taskbar.
 - Support most music players (Spotify, SoundCloud, Deezer, Chrome/Chromium based - Edge - Opera, VLC, etc).
 - 1-click installation.
 - Support Windows Dark/Light Mode
+- Support TaskBar resize and orientation.
 
 ## Installation
 Only works on Windows 10 version 1809 (build 17763) or newer
