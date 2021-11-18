@@ -1,0 +1,57 @@
+﻿<Page
+    x:Class="MediaControls.UWP.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MediaControls.UWP"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Height="40"
+    Width="180"
+    Background="{ThemeResource SystemAccentColorDark1}" PointerEntered="Page_PointerEntered" PointerExited="Page_PointerExited" >
+
+    <Page.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="White" />
+        </Style>
+
+        <Style TargetType="Button">
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="Width" Value="24" />
+            <Setter Property="FontFamily" Value="Segoe MDL2 Assets" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Background" Value="{x:Null}" />
+            <Setter Property="BorderBrush" Value="{x:Null}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}">
+                            <ContentPresenter x:Name="bnt_Content" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+
+    <Grid>
+        <Grid x:Name="Grd_Main">
+            <!--Background="#33000000"-->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="40" />
+                <ColumnDefinition Width="120" />
+            </Grid.ColumnDefinitions>
+
+            <Image x:Name="Img_AlbumCover" Stretch="UniformToFill" HorizontalAlignment="Center" />
+            <StackPanel x:Name="StkPnl_Properties" Grid.Column="2" VerticalAlignment="Center" Visibility="Visible" MaxHeight="37" Margin="10,0,0,0">
+                <TextBlock x:Name="txt_Title"  Text="Title" VerticalAlignment="Top" FontSize="14" TextWrapping="Wrap" MaxHeight="26" LineStackingStrategy="BlockLineHeight" LineHeight="14"  />
+                <TextBlock x:Name="txt_AlbumArtist" Text="AlbumArtist" VerticalAlignment="Bottom" Foreground="LightGray" FontSize="10" />
+            </StackPanel>
+            <StackPanel x:Name="StkPnl_Controls" Grid.Column="2" Orientation="Horizontal" Visibility="Visible" HorizontalAlignment="Left" Margin="6,0,0,0">
+                <Button x:Name="btn_Previous" Content="&#xE892;" Click="btn_Previous_Click"/>
+                <Button x:Name="btn_PlayPause" Content="&#xE768;&#xE769;" Click="btn_PlayPause_Click" />
+                <Button x:Name="btn_Next" Content="&#xE893;" Click="btn_Next_Click" />
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Page>

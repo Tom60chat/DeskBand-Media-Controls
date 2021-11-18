@@ -1,0 +1,12 @@
+﻿<Window x:Class="MediaControls.Test.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MediaControls.Test"
+        xmlns:DeskBand="clr-namespace:MediaControls.DeskBand;assembly=MediaControls.DeskBand"
+        mc:Ignorable="d"
+        Title="DeskBand Media Controls Preview" Height="79" Width="196" Background="{Binding Source={x:Static DeskBand:LightDarkModeGetter.Background}}" ResizeMode="CanResize" WindowStyle="ToolWindow">
+
+    <DeskBand:UserControl1 x:Name="UserControl"/>
+</Window>

@@ -1,0 +1,337 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F83F0981-9881-4442-9708-B94962854C22}</ProjectGuid>
+    <OutputType>library</OutputType>
+    <RootNamespace>MediaControls.DeskBand</RootNamespace>
+    <AssemblyName>MediaControls.DeskBand</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetPlatformVersion>10.0.17763</TargetPlatformVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;DESKBAND_WPF</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;DESKBAND_WPF</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup />
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="GitHubHelper.cs" />
+    <Compile Include="IconUtilities.cs" />
+    <Compile Include="LightDarkModeGetter.cs" />
+    <Compile Include="CSDeskBand.cs" />
+    <Compile Include="Deskband.cs" />
+    <Compile Include="MediaSelectorWindow.xaml.cs">
+      <DependentUpon>MediaSelectorWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modeles\PlayerModel.cs" />
+    <Compile Include="Modeles\PlayerShortcut.cs" />
+    <Compile Include="PlayersShorcutUserControl.xaml.cs">
+      <DependentUpon>PlayersShorcutUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PlayerUtilities.cs" />
+    <Compile Include="SegoeIcons.cs" />
+    <Compile Include="SessionManager.cs" />
+    <Compile Include="TargetInput.cs" />
+    <Compile Include="UserControl1.xaml.cs">
+      <DependentUpon>UserControl1.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="FluentWPF">
+      <Version>0.9.0</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Windows.SDK.Contracts">
+      <Version>10.0.19041.1</Version>
+    </PackageReference>
+    <PackageReference Include="Octokit">
+      <Version>0.50.0</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Shell32">
+      <Guid>{50A7E9B0-70EF-11D1-B75A-00A0C90564FE}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="AfterResolveReferences">
+    <ItemGroup>
+      <EmbeddedResource Include="@(ReferenceCopyLocalPaths)" Condition="'%(ReferenceCopyLocalPaths.Extension)' == '.dll'">
+        <LogicalName>%(ReferenceCopyLocalPaths.DestinationSubDirectory)%(ReferenceCopyLocalPaths.Filename)%(ReferenceCopyLocalPaths.Extension)</LogicalName>
+      </EmbeddedResource>
+    </ItemGroup>
+  </Target>
+  <ItemGroup>
+    <ReferencePath Include="C:\Users\Tom60\.nuget\packages\system.runtime.windowsruntime\4.6.0\buildTransitive\net461\..\..\ref\netstandard2.0\System.Runtime.WindowsRuntime.dll" />
+    <ReferencePath Include="C:\Users\Tom60\.nuget\packages\system.runtime.windowsruntime.ui.xaml\4.6.0\build\net461\..\..\ref\netstandard2.0\System.Runtime.WindowsRuntime.UI.Xaml.dll" />
+    <ReferencePath Include="C:\Users\Tom60\.nuget\packages\fluentwpf\0.9.0\lib\net45\FluentWPF.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Microsoft.CSharp.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\mscorlib.dll" />
+    <ReferencePath Include="C:\Users\Tom60\.nuget\packages\octokit\0.50.0\lib\net46\Octokit.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\PresentationCore.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\PresentationFramework.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\System.Core.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\System.Data.DataSetExtensions.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\System.Data.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\System.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\System.Drawing.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\System.Net.Http.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\System.Windows.Forms.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\System.Xaml.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\System.Xml.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\System.Xml.Linq.dll" />
+    <ReferencePath Include="C:\Users\Tom60\.nuget\packages\microsoft.windows.sdk.contracts\10.0.19041.1\ref\netstandard2.0\Windows.AI.MachineLearning.MachineLearningContract.winmd" />
+    <ReferencePath Include="C:\Users\Tom60\.nuget\packages\microsoft.windows.sdk.contracts\10.0.19041.1\ref\netstandard2.0\Windows.AI.MachineLearning.Preview.MachineLearningPreviewContract.winmd" />
+    <ReferencePath Include="C:\Users\Tom60\.nuget\packages\microsoft.windows.sdk.contracts\10.0.19041.1\ref\netstandard2.0\Windows.ApplicationModel.Activation.ActivatedEventsContract.winmd" />
+    <ReferencePath Include="C:\Users\Tom60\.nuget\packages\microsoft.windows.sdk.contracts\10.0.19041.1\ref\netstandard2.0\Windows.ApplicationModel.Activation.ActivationCameraSettingsContract.winmd" />
+    <ReferencePath Include="C:\Users\Tom60\.nuget\packages\microsoft.windows.sdk.contracts\10.0.19041.1\ref\netstandard2.0\Windows.ApplicationModel.Activation.ContactActivatedEventsContract.winmd" />
+    <ReferencePath Include="C:\Users\Tom60\.nuget\packages\microsoft.windows.sdk.contracts\10.0.19041.1\ref\netstandard2.0\Windows.ApplicationModel.Activation.WebUISearchActivatedEventsContract.winmd" />
+    <ReferencePath Include="C:\Users\Tom60\.nuget\packages\microsoft.windows.sdk.contracts\10.0.19041.1\ref\netstandard2.0\Windows.ApplicationModel.Background.BackgroundAlarmApplicationContract.winmd" />
+    <ReferencePath Include="C:\Users\Tom60\.nuget\packages\microsoft.windows.sdk.contracts\10.0.19041.1\ref\netstandard2.0\Windows.ApplicationModel.Calls.Background.CallsBackgroundContract.winmd" />
+    <ReferencePath Include="C:\Users\Tom60\.nuget\packages\microsoft.windows.sdk.contracts\10.0.19041.1\ref\netstandard2.0\Windows.ApplicationModel.Calls.CallsPhoneContract.winmd" />
+    <ReferencePath Include="C:\Users\Tom60\.nuget\packages\microsoft.windows.sdk.contracts\10.0.19041.1\ref\netstandard2.0\Windows.ApplicationModel.Calls.CallsVoipContract.winmd" />
+    <ReferencePath Include="C:\Users\Tom60\.nuget\packages\microsoft.windows.sdk.contracts\10.0.19041.1\ref\netstandard2.0\Windows.ApplicationModel.Calls.LockScreenCallContract.winmd" />
+    <ReferencePath Include="C:\Users\Tom60\.nuget\packages\microsoft.windows.sdk.contracts\10.0.19041.1\ref\netstandard2.0\Windows.ApplicationModel.CommunicationBlocking.CommunicationBlockingContract.winmd" />
+    <ReferencePath Include="C:\Users\Tom60\.nuget\packages\microsoft.windows.sdk.contracts\10.0.19041.1\ref\netstandard2.0\Windows.ApplicationModel.FullTrustAppContract.winmd" />
+    <ReferencePath Include="C:\Users\Tom60\.nuget\packages\microsoft.windows.sdk.contracts\10.0.19041.1\ref\netstandard2.0\Windows.ApplicationModel.Preview.InkWorkspace.PreviewInkWorkspaceContract.winmd" />
+    <ReferencePath Include="C:\Users\Tom60\.nuget\packages\microsoft.windows.sdk.contracts\10.0.19041.1\ref\netstandard2.0\Windows.ApplicationModel.Preview.Notes.PreviewNotesContract.winmd" />
+    <ReferencePath Include="C:\Users\Tom60\.nuget\packages\microsoft.windows.sdk.contracts\10.0.19041.1\ref\netstandard2.0\Windows.ApplicationModel.Resources.Management.ResourceIndexerContract.winmd" />
+    <ReferencePath Include="C:\Users\Tom60\.nuget\packages\microsoft.windows.sdk.contracts\10.0.19041.1\ref\netstandard2.0\Windows.ApplicationModel.Search.Core.SearchCoreContract.winmd" />
+    <ReferencePath Include="C:\Users\Tom60\.nuget\packages\microsoft.windows.sdk.contracts\10.0.19041.1\ref\netstandard2.0\Windows.ApplicationModel.Search.SearchContract.winmd" />
+    <ReferencePath Include="C:\Users\Tom60\.nuget\packages\microsoft.windows.sdk.contracts\10.0.19041.1\ref\netstandard2.0\Windows.ApplicationModel.SocialInfo.SocialInfoContract.winmd" />
+    <ReferencePath Include="C:\Users\Tom60\.nuget\packages\microsoft.windows.sdk.contracts\10.0.19041.1\ref\netstandard2.0\Windows.ApplicationModel.StartupTaskContract.winmd" />
+    <ReferencePath Include="C:\Users\Tom60\.nuget\packages\microsoft.windows.sdk.contracts\10.0.19041.1\ref\netstandard2.0\Windows.ApplicationModel.Wallet.WalletContract.winmd" />
+    <ReferencePath Include="C:\Users\Tom60\.nuget\packages\microsoft.windows.sdk.contracts\10.0.19041.1\ref\netstandard2.0\Windows.Devices.Custom.CustomDeviceContract.winmd" />
+    <ReferencePath Include="C:\Users\Tom60\.nuget\packages\microsoft.windows.sdk.contracts\10.0.19041.1\ref\netstandard2.0\Windows.Devices.DevicesLowLevelContract.winmd" />
+    <ReferencePath Include="C:\Users\Tom60\.nuget\packages\microsoft.windows.sdk.contracts\10.0.19041.1\ref\netstandard2.0\Windows.Devices.Portable.PortableDeviceContract.winmd" />
+    <ReferencePath Include="C:\Users\Tom60\.nuget\packages\microsoft.windows.sdk.contracts\10.0.19041.1\ref\netstandard2.0\Windows.Devices.Printers.Extensions.ExtensionsContract.winmd" />
+    <ReferencePath Include="C:\Users\Tom60\.nuget\packages\microsoft.windows.sdk.contracts\10.0.19041.1\ref\netstandard2.0\Windows.Devices.Printers.PrintersContract.winmd" />
+    <ReferencePath Include="C:\Users\Tom60\.nuget\packages\microsoft.windows.sdk.contracts\10.0.19041.1\ref\netstandard2.0\Windows.Devices.Scanners.ScannerDeviceContract.winmd" />
+    <ReferencePath Include="C:\Users\Tom60\.nuget\packages\microsoft.windows.sdk.contracts\10.0.19041.1\ref\netstandard2.0\Windows.Devices.SmartCards.SmartCardBackgroundTriggerContract.winmd" />
+    <ReferencePath Include="C:\Users\Tom60\.nuget\packages\microsoft.windows.sdk.contracts\10.0.19041.1\ref\netstandard2.0\Windows.Devices.SmartCards.SmartCardEmulatorContract.winmd" />
+    <ReferencePath Include="C:\Users\Tom60\.nuget\packages\microsoft.windows.sdk.contracts\10.0.19041.1\ref\netstandard2.0\Windows.Devices.Sms.LegacySmsApiContract.winmd" />
+    <ReferencePath Include="C:\Users\Tom60\.nuget\packages\microsoft.windows.sdk.contracts\10.0.19041.1\ref\netstandard2.0\Windows.Embedded.DeviceLockdown.DeviceLockdownContract.winmd" />
+    <ReferencePath Include="C:\Users\Tom60\.nuget\packages\microsoft.windows.sdk.contracts\10.0.19041.1\ref\netstandard2.0\Windows.Foundation.FoundationContract.winmd" />
+    <ReferencePath Include="C:\Users\Tom60\.nuget\packages\microsoft.windows.sdk.contracts\10.0.19041.1\ref\netstandard2.0\Windows.Foundation.UniversalApiContract.winmd" />
+    <ReferencePath Include="C:\Users\Tom60\.nuget\packages\microsoft.windows.sdk.contracts\10.0.19041.1\ref\netstandard2.0\Windows.Gaming.Input.GamingInputPreviewContract.winmd" />
+    <ReferencePath Include="C:\Users\Tom60\.nuget\packages\microsoft.windows.sdk.contracts\10.0.19041.1\ref\netstandard2.0\Windows.Gaming.Preview.GamesEnumerationContract.winmd" />
+    <ReferencePath Include="C:\Users\Tom60\.nuget\packages\microsoft.windows.sdk.contracts\10.0.19041.1\ref\netstandard2.0\Windows.Gaming.UI.GameChatOverlayContract.winmd" />
+    <ReferencePath Include="C:\Users\Tom60\.nuget\packages\microsoft.windows.sdk.contracts\10.0.19041.1\ref\netstandard2.0\Windows.Gaming.UI.GamingUIProviderContract.winmd" />
+    <ReferencePath Include="C:\Users\Tom60\.nuget\packages\microsoft.windows.sdk.contracts\10.0.19041.1\ref\netstandard2.0\Windows.Gaming.XboxLive.StorageApiContract.winmd" />
+    <ReferencePath Include="C:\Users\Tom60\.nuget\packages\microsoft.windows.sdk.contracts\10.0.19041.1\ref\netstandard2.0\Windows.Globalization.GlobalizationJapanesePhoneticAnalyzerContract.winmd" />
+    <ReferencePath Include="C:\Users\Tom60\.nuget\packages\microsoft.windows.sdk.contracts\10.0.19041.1\ref\netstandard2.0\Windows.Graphics.Printing3D.Printing3DContract.winmd" />
+    <ReferencePath Include="C:\Users\Tom60\.nuget\packages\microsoft.windows.sdk.contracts\10.0.19041.1\ref\netstandard2.0\Windows.Management.Deployment.Preview.DeploymentPreviewContract.winmd" />
+    <ReferencePath Include="C:\Users\Tom60\.nuget\packages\microsoft.windows.sdk.contracts\10.0.19041.1\ref\netstandard2.0\Windows.Management.Workplace.WorkplaceSettingsContract.winmd" />
+    <ReferencePath Include="C:\Users\Tom60\.nuget\packages\microsoft.windows.sdk.contracts\10.0.19041.1\ref\netstandard2.0\Windows.Media.AppBroadcasting.AppBroadcastingContract.winmd" />
+    <ReferencePath Include="C:\Users\Tom60\.nuget\packages\microsoft.windows.sdk.contracts\10.0.19041.1\ref\netstandard2.0\Windows.Media.AppRecording.AppRecordingContract.winmd" />
+    <ReferencePath Include="C:\Users\Tom60\.nuget\packages\microsoft.windows.sdk.contracts\10.0.19041.1\ref\netstandard2.0\Windows.Media.Capture.AppBroadcastContract.winmd" />
+    <ReferencePath Include="C:\Users\Tom60\.nuget\packages\microsoft.windows.sdk.contracts\10.0.19041.1\ref\netstandard2.0\Windows.Media.Capture.AppCaptureContract.winmd" />
+    <ReferencePath Include="C:\Users\Tom60\.nuget\packages\microsoft.windows.sdk.contracts\10.0.19041.1\ref\netstandard2.0\Windows.Media.Capture.AppCaptureMetadataContract.winmd" />
+    <ReferencePath Include="C:\Users\Tom60\.nuget\packages\microsoft.windows.sdk.contracts\10.0.19041.1\ref\netstandard2.0\Windows.Media.Capture.CameraCaptureUIContract.winmd" />
+    <ReferencePath Include="C:\Users\Tom60\.nuget\packages\microsoft.windows.sdk.contracts\10.0.19041.1\ref\netstandard2.0\Windows.Media.Capture.GameBarContract.winmd" />
+    <ReferencePath Include="C:\Users\Tom60\.nuget\packages\microsoft.windows.sdk.contracts\10.0.19041.1\ref\netstandard2.0\Windows.Media.Devices.CallControlContract.winmd" />
+    <ReferencePath Include="C:\Users\Tom60\.nuget\packages\microsoft.windows.sdk.contracts\10.0.19041.1\ref\netstandard2.0\Windows.Media.MediaControlContract.winmd" />
+    <ReferencePath Include="C:\Users\Tom60\.nuget\packages\microsoft.windows.sdk.contracts\10.0.19041.1\ref\netstandard2.0\Windows.Media.Playlists.PlaylistsContract.winmd" />
+    <ReferencePath Include="C:\Users\Tom60\.nuget\packages\microsoft.windows.sdk.contracts\10.0.19041.1\ref\netstandard2.0\Windows.Media.Protection.ProtectionRenewalContract.winmd" />
+    <ReferencePath Include="C:\Users\Tom60\.nuget\packages\microsoft.windows.sdk.contracts\10.0.19041.1\ref\netstandard2.0\Windows.Networking.Connectivity.WwanContract.winmd" />
+    <ReferencePath Include="C:\Users\Tom60\.nuget\packages\microsoft.windows.sdk.contracts\10.0.19041.1\ref\netstandard2.0\Windows.Networking.NetworkOperators.LegacyNetworkOperatorsContract.winmd" />
+    <ReferencePath Include="C:\Users\Tom60\.nuget\packages\microsoft.windows.sdk.contracts\10.0.19041.1\ref\netstandard2.0\Windows.Networking.NetworkOperators.NetworkOperatorsFdnContract.WinMD" />
+    <ReferencePath Include="C:\Users\Tom60\.nuget\packages\microsoft.windows.sdk.contracts\10.0.19041.1\ref\netstandard2.0\Windows.Networking.Sockets.ControlChannelTriggerContract.winmd" />
+    <ReferencePath Include="C:\Users\Tom60\.nuget\packages\microsoft.windows.sdk.contracts\10.0.19041.1\ref\netstandard2.0\Windows.Networking.XboxLive.XboxLiveSecureSocketsContract.winmd" />
+    <ReferencePath Include="C:\Users\Tom60\.nuget\packages\microsoft.windows.sdk.contracts\10.0.19041.1\ref\netstandard2.0\Windows.Perception.Automation.Core.PerceptionAutomationCoreContract.winmd" />
+    <ReferencePath Include="C:\Users\Tom60\.nuget\packages\microsoft.windows.sdk.contracts\10.0.19041.1\ref\netstandard2.0\Windows.Phone.PhoneContract.winmd" />
+    <ReferencePath Include="C:\Users\Tom60\.nuget\packages\microsoft.windows.sdk.contracts\10.0.19041.1\ref\netstandard2.0\Windows.Phone.StartScreen.DualSimTileContract.WinMD" />
+    <ReferencePath Include="C:\Users\Tom60\.nuget\packages\microsoft.windows.sdk.contracts\10.0.19041.1\ref\netstandard2.0\Windows.Security.EnterpriseData.EnterpriseDataContract.winmd" />
+    <ReferencePath Include="C:\Users\Tom60\.nuget\packages\microsoft.windows.sdk.contracts\10.0.19041.1\ref\netstandard2.0\Windows.Security.ExchangeActiveSyncProvisioning.EasContract.winmd" />
+    <ReferencePath Include="C:\Users\Tom60\.nuget\packages\microsoft.windows.sdk.contracts\10.0.19041.1\ref\netstandard2.0\Windows.Security.Isolation.Isolatedwindowsenvironmentcontract.winmd" />
+    <ReferencePath Include="C:\Users\Tom60\.nuget\packages\microsoft.windows.sdk.contracts\10.0.19041.1\ref\netstandard2.0\Windows.Services.Maps.GuidanceContract.winmd" />
+    <ReferencePath Include="C:\Users\Tom60\.nuget\packages\microsoft.windows.sdk.contracts\10.0.19041.1\ref\netstandard2.0\Windows.Services.Maps.LocalSearchContract.winmd" />
+    <ReferencePath Include="C:\Users\Tom60\.nuget\packages\microsoft.windows.sdk.contracts\10.0.19041.1\ref\netstandard2.0\Windows.Services.Store.StoreContract.winmd" />
+    <ReferencePath Include="C:\Users\Tom60\.nuget\packages\microsoft.windows.sdk.contracts\10.0.19041.1\ref\netstandard2.0\Windows.Services.TargetedContent.TargetedContentContract.winmd" />
+    <ReferencePath Include="C:\Users\Tom60\.nuget\packages\microsoft.windows.sdk.contracts\10.0.19041.1\ref\netstandard2.0\Windows.Storage.Provider.CloudFilesContract.winmd" />
+    <ReferencePath Include="C:\Users\Tom60\.nuget\packages\microsoft.windows.sdk.contracts\10.0.19041.1\ref\netstandard2.0\Windows.System.Profile.ProfileHardwareTokenContract.winmd" />
+    <ReferencePath Include="C:\Users\Tom60\.nuget\packages\microsoft.windows.sdk.contracts\10.0.19041.1\ref\netstandard2.0\Windows.System.Profile.ProfileRetailInfoContract.winmd" />
+    <ReferencePath Include="C:\Users\Tom60\.nuget\packages\microsoft.windows.sdk.contracts\10.0.19041.1\ref\netstandard2.0\Windows.System.Profile.ProfileSharedModeContract.winmd" />
+    <ReferencePath Include="C:\Users\Tom60\.nuget\packages\microsoft.windows.sdk.contracts\10.0.19041.1\ref\netstandard2.0\Windows.System.Profile.SystemManufacturers.SystemManufacturersContract.winmd" />
+    <ReferencePath Include="C:\Users\Tom60\.nuget\packages\microsoft.windows.sdk.contracts\10.0.19041.1\ref\netstandard2.0\Windows.System.SystemManagementContract.winmd" />
+    <ReferencePath Include="C:\Users\Tom60\.nuget\packages\microsoft.windows.sdk.contracts\10.0.19041.1\ref\netstandard2.0\Windows.System.UserProfile.UserProfileContract.winmd" />
+    <ReferencePath Include="C:\Users\Tom60\.nuget\packages\microsoft.windows.sdk.contracts\10.0.19041.1\ref\netstandard2.0\Windows.System.UserProfile.UserProfileLockScreenContract.winmd" />
+    <ReferencePath Include="C:\Users\Tom60\.nuget\packages\microsoft.windows.sdk.contracts\10.0.19041.1\ref\netstandard2.0\Windows.UI.ApplicationSettings.ApplicationsSettingsContract.winmd" />
+    <ReferencePath Include="C:\Users\Tom60\.nuget\packages\microsoft.windows.sdk.contracts\10.0.19041.1\ref\netstandard2.0\Windows.UI.Core.AnimationMetrics.AnimationMetricsContract.winmd" />
+    <ReferencePath Include="C:\Users\Tom60\.nuget\packages\microsoft.windows.sdk.contracts\10.0.19041.1\ref\netstandard2.0\Windows.UI.Core.CoreWindowDialogsContract.winmd" />
+    <ReferencePath Include="C:\Users\Tom60\.nuget\packages\microsoft.windows.sdk.contracts\10.0.19041.1\ref\netstandard2.0\Windows.UI.Shell.SecurityAppManagerContract.winmd" />
+    <ReferencePath Include="C:\Users\Tom60\.nuget\packages\microsoft.windows.sdk.contracts\10.0.19041.1\ref\netstandard2.0\Windows.UI.ViewManagement.ViewManagementViewScalingContract.winmd" />
+    <ReferencePath Include="C:\Users\Tom60\.nuget\packages\microsoft.windows.sdk.contracts\10.0.19041.1\ref\netstandard2.0\Windows.UI.WebUI.Core.WebUICommandBarContract.winmd" />
+    <ReferencePath Include="C:\Users\Tom60\.nuget\packages\microsoft.windows.sdk.contracts\10.0.19041.1\ref\netstandard2.0\Windows.UI.Xaml.Core.Direct.XamlDirectContract.winmd" />
+    <ReferencePath Include="C:\Users\Tom60\.nuget\packages\microsoft.windows.sdk.contracts\10.0.19041.1\ref\netstandard2.0\Windows.UI.Xaml.Hosting.HostingContract.winmd" />
+    <ReferencePath Include="C:\Users\Tom60\.nuget\packages\microsoft.windows.sdk.contracts\10.0.19041.1\ref\netstandard2.0\Windows.Web.Http.Diagnostics.HttpDiagnosticsContract.winmd" />
+    <ReferencePath Include="C:\Users\Tom60\.nuget\packages\microsoft.windows.sdk.contracts\10.0.19041.1\ref\netstandard2.0\Windows.WinMD" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\WindowsBase.dll" />
+    <ReferencePath Include="obj\Debug\Interop.Shell32.dll">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </ReferencePath>
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\Microsoft.Win32.Primitives.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\netstandard.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.AppContext.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.Collections.Concurrent.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.Collections.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.Collections.NonGeneric.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.Collections.Specialized.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.ComponentModel.Annotations.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.ComponentModel.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.ComponentModel.EventBasedAsync.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.ComponentModel.Primitives.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.ComponentModel.TypeConverter.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.Console.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.Data.Common.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.Diagnostics.Contracts.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.Diagnostics.Debug.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.Diagnostics.FileVersionInfo.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.Diagnostics.Process.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.Diagnostics.StackTrace.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.Diagnostics.TextWriterTraceListener.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.Diagnostics.Tools.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.Diagnostics.TraceSource.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.Drawing.Primitives.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.Dynamic.Runtime.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.Globalization.Calendars.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.Globalization.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.Globalization.Extensions.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.IO.Compression.ZipFile.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.IO.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.IO.FileSystem.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.IO.FileSystem.DriveInfo.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.IO.FileSystem.Primitives.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.IO.FileSystem.Watcher.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.IO.IsolatedStorage.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.IO.MemoryMappedFiles.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.IO.Pipes.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.IO.UnmanagedMemoryStream.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.Linq.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.Linq.Expressions.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.Linq.Parallel.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.Linq.Queryable.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.Net.Http.Rtc.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.Net.NameResolution.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.Net.NetworkInformation.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.Net.Ping.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.Net.Primitives.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.Net.Requests.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.Net.Security.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.Net.Sockets.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.Net.WebHeaderCollection.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.Net.WebSockets.Client.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.Net.WebSockets.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.ObjectModel.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.Reflection.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.Reflection.Emit.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.Reflection.Emit.ILGeneration.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.Reflection.Emit.Lightweight.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.Reflection.Extensions.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.Reflection.Primitives.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.Resources.Reader.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.Resources.ResourceManager.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.Resources.Writer.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.Runtime.CompilerServices.VisualC.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.Runtime.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.Runtime.Extensions.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.Runtime.Handles.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.Runtime.InteropServices.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.Runtime.InteropServices.RuntimeInformation.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.Runtime.InteropServices.WindowsRuntime.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.Runtime.Numerics.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.Runtime.Serialization.Formatters.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.Runtime.Serialization.Json.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.Runtime.Serialization.Primitives.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.Runtime.Serialization.Xml.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.Security.Claims.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.Security.Cryptography.Algorithms.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.Security.Cryptography.Csp.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.Security.Cryptography.Encoding.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.Security.Cryptography.Primitives.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.Security.Cryptography.X509Certificates.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.Security.Principal.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.Security.SecureString.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.ServiceModel.Duplex.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.ServiceModel.Http.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.ServiceModel.NetTcp.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.ServiceModel.Primitives.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.ServiceModel.Security.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.Text.Encoding.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.Text.Encoding.Extensions.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.Text.RegularExpressions.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.Threading.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.Threading.Overlapped.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.Threading.Tasks.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.Threading.Tasks.Parallel.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.Threading.Thread.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.Threading.ThreadPool.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.Threading.Timer.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.ValueTuple.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.Xml.ReaderWriter.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.Xml.XDocument.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.Xml.XmlDocument.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.Xml.XmlSerializer.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.Xml.XPath.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\Facades\System.Xml.XPath.XDocument.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="C:\Users\Tom60\OneDrive\Documents\Projects\C#\DeskBand Media Controls\MediaControls.DeskBand\obj\Debug\MediaSelectorWindow.g.cs" />
+    <Compile Include="C:\Users\Tom60\OneDrive\Documents\Projects\C#\DeskBand Media Controls\MediaControls.DeskBand\obj\Debug\PlayersShorcutUserControl.g.cs" />
+    <Compile Include="C:\Users\Tom60\OneDrive\Documents\Projects\C#\DeskBand Media Controls\MediaControls.DeskBand\obj\Debug\UserControl1.g.cs" />
+    <Compile Include="C:\Users\Tom60\OneDrive\Documents\Projects\C#\DeskBand Media Controls\MediaControls.DeskBand\obj\Debug\GeneratedInternalTypeHelper.g.cs" />
+  </ItemGroup>
+</Project>

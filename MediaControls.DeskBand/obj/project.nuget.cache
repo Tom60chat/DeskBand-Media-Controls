@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "lm6F1dfMpw5CEUmD9IgF/7yOPmeh2Kjp7VT2oDCBC2+BqiLHzd8UUTydJ9NXTC/oSug8JKx2MzUszbEsrNODDA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Tom60\\OneDrive\\Documents_\\Projects\\C#\\DeskBand Media Controls\\MediaControls.DeskBand\\MediaControls.DeskBand.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Tom60\\.nuget\\packages\\microsoft.windows.sdk.contracts\\10.0.19041.1\\microsoft.windows.sdk.contracts.10.0.19041.1.nupkg.sha512",
+    "C:\\Users\\Tom60\\.nuget\\packages\\octokit\\0.50.0\\octokit.0.50.0.nupkg.sha512",
+    "C:\\Users\\Tom60\\.nuget\\packages\\system.runtime.windowsruntime\\4.6.0\\system.runtime.windowsruntime.4.6.0.nupkg.sha512",
+    "C:\\Users\\Tom60\\.nuget\\packages\\system.runtime.windowsruntime.ui.xaml\\4.6.0\\system.runtime.windowsruntime.ui.xaml.4.6.0.nupkg.sha512"
+  ],
+  "logs": []
+}

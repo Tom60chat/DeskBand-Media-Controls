@@ -1,0 +1,34 @@
+﻿<UserControl x:Class="MediaControls.DeskBand.PlayersShorcutUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MediaControls.DeskBand"
+             mc:Ignorable="d" 
+             DataContext="{Binding RelativeSource={RelativeSource Self}}"
+             d:DesignHeight="40" d:DesignWidth="180">
+    <Grid>
+        <!--<Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="8*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>-->
+        
+        <!-- ItemsSource="{Binding PlayerShortcutItems}" -->
+        <ListView x:Name="lst_Player" Grid.Row="1" ItemsSource="{Binding PlayerShortcutItems}" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{Binding Source={x:Static local:LightDarkModeGetter.Foreground}}" HorizontalAlignment="Center" SelectionMode="Single" SelectionChanged="lst_Player_SelectionChanged" ScrollViewer.VerticalScrollBarVisibility="Disabled" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel x:Name="lstStkPanel" Orientation="Horizontal" Loaded="lstStkPanel_Loaded"/>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Image Source="{Binding Icon}" ToolTip="{Binding Name}" Width="24" RenderOptions.BitmapScalingMode="Fant"/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
+            <!--<local:PlayerModel Name="Name" Icon="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Google_Chrome_icon_%28September_2014%29.svg/120px-Google_Chrome_icon_%28September_2014%29.svg.png"/>-->
+        </ListView>
+    </Grid>
+</UserControl>

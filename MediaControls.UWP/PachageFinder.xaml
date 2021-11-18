@@ -1,0 +1,16 @@
+﻿<Page
+    x:Class="MediaControls.UWP.PachageFinder"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MediaControls.UWP"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <StackPanel>
+        <TextBox x:Name="fld_PackageFamilyName"/>
+        <Button x:Name="btn_Go" Content="Go" Click="btn_Go_Click"/>
+        <TextBlock x:Name="txt_result"/>
+    </StackPanel>
+</Page>

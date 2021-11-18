@@ -1,0 +1,1 @@
+C:\Users\Tom60\OneDrive\Documents\Projects\C#\DeskBand Media Controls\MediaControls.UWP\MediaControls.UWP.csproj;x64
