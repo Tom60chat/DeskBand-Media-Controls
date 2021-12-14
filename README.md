@@ -27,8 +27,3 @@ Only works on Windows 10 version 1809 (build 17763) or newer
 ![](Store/Media%20controls%20Resize.png)
 
 ![](Store/Player%20selector.png)
-
-## Viruses
-It's totally okay not to trust me and you're right.
-
-I put a link to VirusTotal to at least prove it's not a virus, in every version description.
