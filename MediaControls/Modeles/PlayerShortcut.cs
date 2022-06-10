@@ -1,6 +1,6 @@
 ﻿using System.Windows.Media;
 
-namespace MediaControls.DeskBand
+namespace MediaControls
 {
     public class PlayerShortcut
     {

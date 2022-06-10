@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Shell32;
+using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.IO;
@@ -11,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Windows.Storage.Streams;
 
-namespace MediaControls.DeskBand
+namespace MediaControls
 {
     internal static class ImageUtilities
     {
@@ -64,13 +65,13 @@ namespace MediaControls.DeskBand
 
         public static Icon GetShortcutLinkIcon(string lnkPath)
         {
-            var shl = new Shell32.Shell();         // Move this to class scope
+            var shl = new Shell();         // Move this to class scope
             lnkPath = Path.GetFullPath(lnkPath);
             var dir = shl.NameSpace(Path.GetDirectoryName(lnkPath));
             var itm = dir.Items().Item(Path.GetFileName(lnkPath));
-            var lnk = (Shell32.ShellLinkObject)itm.GetLink;
-            string strIcon;
-            lnk.GetIconLocation(out strIcon);
+            var lnk = (ShellLinkObject)itm.GetLink;
+            lnk.GetIconLocation(out string strIcon);
+
             return Icon.ExtractAssociatedIcon(strIcon);
         }
     }

@@ -10,7 +10,7 @@ using Windows.ApplicationModel;
 using Windows.Management.Deployment;
 using Windows.System;
 
-namespace MediaControls.DeskBand
+namespace MediaControls
 {
     class PlayerUtilities
     {
@@ -19,7 +19,7 @@ namespace MediaControls.DeskBand
             new PlayerShortcut() { Link = "SpotifyAB.SpotifyMusic_zpdnekdrzrea0" , Type = PlayerShortcut.ShortcutType.WinRT }, // Spotify Store
             new PlayerShortcut() { Link = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Programs), "Spotify.lnk") , Type = PlayerShortcut.ShortcutType.Win32 }, // Spotify Win32
             new PlayerShortcut() { Link = "SoundcloudLtd.SoundCloudforWindowsBeta_2xc63xn306dnw" , Type = PlayerShortcut.ShortcutType.WinRT }, // SoundCloud Store
-            new PlayerShortcut() { Link = "Deezer.62021768415AF_q7m17pa7q8kj0" , Type = PlayerShortcut.ShortcutType.WinRT }, // Spotify Store
+            new PlayerShortcut() { Link = "Deezer.62021768415AF_q7m17pa7q8kj0" , Type = PlayerShortcut.ShortcutType.WinRT }, // Deezer Store
             new PlayerShortcut() { Link = "https://music.youtube.com/" , Type = PlayerShortcut.ShortcutType.Url, Name = "Youtube Music" }, // YouTube Music
         };
 

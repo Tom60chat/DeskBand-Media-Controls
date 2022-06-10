@@ -41,7 +41,7 @@ namespace MediaControls.DeskBand
         {
             if (UserControl1.Singleton != null)
             {
-                UserControl1.Singleton.CurrentEdge = e.Edge;
+                UserControl1.Singleton.CurrentEdge = (System.Windows.Forms.TaskbarPosition)e.Edge;
             }
         }
 

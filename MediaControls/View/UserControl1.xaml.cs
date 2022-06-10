@@ -1,21 +1,15 @@
-﻿using CSDeskBand;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Windows.Media.Control;
-using Window = Windows.UI.Xaml.Window;
+using TaskbarPosition = System.Windows.Forms.TaskbarPosition;
+using Taskbar = System.Windows.Forms.Taskbar;
 
-namespace MediaControls.DeskBand
+namespace MediaControls
 {
     /// <summary>
     /// Logique d'interaction pour UserControl1.xaml
@@ -26,11 +20,11 @@ namespace MediaControls.DeskBand
         private GlobalSystemMediaTransportControlsSession currentSession;
         private GlobalSystemMediaTransportControlsSessionPlaybackInfo lastPlayBackInfo;
         private MediaSelectorWindow mediaSelector;
-        private Edge currentEdge = Edge.Bottom;
+        private TaskbarPosition currentEdge = TaskbarPosition.Bottom;
         //private bool mediaSelectorOpen;
         public bool ImgLoading { get => true; }
         public static UserControl1 Singleton { get; private set; }
-        public Edge CurrentEdge
+        public TaskbarPosition CurrentEdge
         {
             get => currentEdge;
             set {
@@ -44,23 +38,40 @@ namespace MediaControls.DeskBand
         public UserControl1()
         {
             Singleton = this;
-            var taskBarInfo = new TaskbarInfo();
-
+            
             try
             {
                 InitializeComponent();
+                SetCorner(false);
                 NoPlayer();
                 _ = Init();
                 _ = CheckUpdate();
-                taskBarInfo.UpdateInfo();
 
-                CurrentEdge = taskBarInfo.Edge;
+                CurrentEdge = Taskbar.Position;
                 wrapPnlControls.Opacity = 0;
                 bnt_MediaSelector.Opacity = 0;
             }
             catch (Exception e)
             {
                 MessageBox.Show(e.Message + Environment.NewLine + e.ToString(), "Init error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        public void SetCorner(bool corner)
+        {
+            if (corner)
+            {
+                AlbumCoverImage_Border.CornerRadius = new CornerRadius(4);
+
+                var style = Resources["CustomButton"] as Style;
+                var newStyle = new Style(typeof(Button), style);
+                newStyle.Setters.Add(new Setter(Border.CornerRadiusProperty, 4));
+                bnt_MediaSelector.Style = style;
+            }
+            else
+            {
+                AlbumCoverImage_Border.CornerRadius = default;
+                bnt_MediaSelector.Style = Resources["CustomButton"] as Style;
             }
         }
 
@@ -110,8 +121,8 @@ namespace MediaControls.DeskBand
             switch (CurrentEdge)
             {
                 // Horizontal
-                case Edge.Bottom:
-                case Edge.Top:
+                case TaskbarPosition.Bottom:
+                case TaskbarPosition.Top:
                     // Definition
                     /*reactGridProperties.Height = 40;
                     reactGridProperties.Width = double.NaN;
@@ -148,8 +159,8 @@ namespace MediaControls.DeskBand
                     break;
 
                 // Vertical
-                case Edge.Right:
-                case Edge.Left:
+                case TaskbarPosition.Right:
+                case TaskbarPosition.Left:
                     // Definition
                     /*reactGridProperties.Height = double.NaN;
                     reactGridProperties.Width = 40;
@@ -191,7 +202,8 @@ namespace MediaControls.DeskBand
 
             Dispatcher.Invoke(() =>
             {
-                Img_AlbumCover.Visibility = Visibility.Collapsed;
+                //Img_AlbumCover.Visibility = Visibility.Collapsed;
+                Img_AlbumCover.ImageSource = null;
                 bnt_MediaSelector.Visibility = Visibility.Collapsed;
                 gridProperties.Visibility = Visibility.Collapsed;
                 wrapPnlControls.Visibility = Visibility.Collapsed;
@@ -251,7 +263,7 @@ namespace MediaControls.DeskBand
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message + Environment.NewLine + e.ToString(), "Init error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(e.Message + Environment.NewLine + e.ToString(), "SessionManager - CurrentSessionChanged error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -318,16 +330,18 @@ namespace MediaControls.DeskBand
                                        new Int32Rect(30, 0, 240, 233));       //select region rect            
                                 }
 
-                                Img_AlbumCover.Source = cover; //set image source to cropped
-                                Img_AlbumCover.Visibility = Visibility.Visible;
+                                Img_AlbumCover.ImageSource = cover; //set image source to cropped
+                                //Img_AlbumCover.Visibility = Visibility.Visible;
                             });
                         }
                         else
-                            Img_AlbumCover.Visibility = Visibility.Hidden;
+                            Img_AlbumCover.ImageSource = null;
+                            //Img_AlbumCover.Visibility = Visibility.Hidden;
                     }
                     catch (Exception e)
                     {
-                        Img_AlbumCover.Visibility = Visibility.Hidden;
+                        Img_AlbumCover.ImageSource = null;
+                        //Img_AlbumCover.Visibility = Visibility.Hidden;
                         MessageBox.Show(e.Message + Environment.NewLine + e.ToString(), "Cover error", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                 }
@@ -476,13 +490,13 @@ namespace MediaControls.DeskBand
                 mediaSelector.DeskBandPoint = point; // Lets the window know where is he
                 switch (CurrentEdge)
                 {
-                    case Edge.Bottom:
-                    case Edge.Top:
+                    case TaskbarPosition.Bottom:
+                    case TaskbarPosition.Top:
                         mediaSelector.Width = ActualWidth;
                         break;
 
-                    case Edge.Left:
-                    case Edge.Right:
+                    case TaskbarPosition.Left:
+                    case TaskbarPosition.Right:
                         mediaSelector.Width = 180;
                         break;
 
@@ -498,18 +512,18 @@ namespace MediaControls.DeskBand
                 mediaSelector != null && mediaSelector.IsVisible ?
                 CurrentEdge switch
                 {
-                    Edge.Left => SegoeIcons.ChevronLeft,
-                    Edge.Top => SegoeIcons.ChevronUp,
-                    Edge.Right => SegoeIcons.ChevronRight,
-                    Edge.Bottom => SegoeIcons.ChevronDown,
+                    TaskbarPosition.Left => SegoeIcons.ChevronLeft,
+                    TaskbarPosition.Top => SegoeIcons.ChevronUp,
+                    TaskbarPosition.Right => SegoeIcons.ChevronRight,
+                    TaskbarPosition.Bottom => SegoeIcons.ChevronDown,
                     _ => SegoeIcons.ChevronDown,
                 } :
                 CurrentEdge switch
                 {
-                    Edge.Left => SegoeIcons.ChevronRight,
-                    Edge.Top => SegoeIcons.ChevronDown,
-                    Edge.Right => SegoeIcons.ChevronLeft,
-                    Edge.Bottom => SegoeIcons.ChevronUp,
+                    TaskbarPosition.Left => SegoeIcons.ChevronRight,
+                    TaskbarPosition.Top => SegoeIcons.ChevronDown,
+                    TaskbarPosition.Right => SegoeIcons.ChevronLeft,
+                    TaskbarPosition.Bottom => SegoeIcons.ChevronUp,
                     _ => SegoeIcons.ChevronDown,
                 };
         }
@@ -520,8 +534,8 @@ namespace MediaControls.DeskBand
 
             switch (CurrentEdge)
             {
-                case Edge.Bottom:
-                case Edge.Top:
+                case TaskbarPosition.Bottom:
+                case TaskbarPosition.Top:
                     Grd_Main.ColumnDefinitions[0].Width = new GridLength(ActualHeight);
                     /*bnt_MediaSelector.Height = double.NaN;
                     bnt_MediaSelector.Width = ActualHeight;*/
@@ -529,8 +543,8 @@ namespace MediaControls.DeskBand
                     wrapPnlControls.ItemWidth = 24;*/
                     break;
 
-                case Edge.Left:
-                case Edge.Right:
+                case TaskbarPosition.Left:
+                case TaskbarPosition.Right:
                     Grd_Main.RowDefinitions[0].Height = new GridLength(ActualWidth);
                     margin = Grd_Main.RowDefinitions[0].Height.Value + Grd_Main.RowDefinitions[1].Height.Value;
                     /* bnt_MediaSelector.Height = ActualWidth;

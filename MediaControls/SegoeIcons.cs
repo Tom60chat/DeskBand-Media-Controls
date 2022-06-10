@@ -1,4 +1,4 @@
-﻿namespace MediaControls.DeskBand
+﻿namespace MediaControls
 {
     public static class SegoeIcons
     {

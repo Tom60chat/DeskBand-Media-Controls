@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace MediaControls.DeskBand
+namespace MediaControls
 {
     public static class DefinitionExtension
     {

@@ -2,23 +2,15 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using Windows.Media.Control;
-using Windows.UI.ViewManagement;
+using TaskbarPosition = System.Windows.Forms.TaskbarPosition;
 
-namespace MediaControls.DeskBand
+namespace MediaControls
 {
     /// <summary>
     /// Logique d'interaction pour MediaSelectorWindow.xaml
@@ -116,15 +108,15 @@ namespace MediaControls.DeskBand
 
                 switch (UserControl1.Singleton.CurrentEdge)
                 {
-                    case CSDeskBand.Edge.Bottom:
+                    case TaskbarPosition.Bottom:
                         Top = Math.Abs(DeskBandPoint.Y) - height;
                         break;
-                    case CSDeskBand.Edge.Top:
+                    case TaskbarPosition.Top:
                         Top = Math.Abs(DeskBandPoint.Y) + UserControl1.Singleton.ActualHeight;
                         break;
 
-                    case CSDeskBand.Edge.Right:
-                    case CSDeskBand.Edge.Left:
+                    case TaskbarPosition.Right:
+                    case TaskbarPosition.Left:
                         Top = Math.Abs(DeskBandPoint.Y);
                         break;
                 }
@@ -176,15 +168,15 @@ namespace MediaControls.DeskBand
             {
                 switch (UserControl1.Singleton.CurrentEdge)
                 {
-                    case CSDeskBand.Edge.Top:
-                    case CSDeskBand.Edge.Bottom:
+                    case TaskbarPosition.Top:
+                    case TaskbarPosition.Bottom:
                         Left = Math.Abs(DeskBandPoint.X);
                         break;
 
-                    case CSDeskBand.Edge.Left:
+                    case TaskbarPosition.Left:
                         Left = Math.Abs(DeskBandPoint.X) + UserControl1.Singleton.ActualWidth;
                         break;
-                    case CSDeskBand.Edge.Right:
+                    case TaskbarPosition.Right:
                         Left = Math.Abs(DeskBandPoint.X) - ActualWidth;
                         break;
                 }

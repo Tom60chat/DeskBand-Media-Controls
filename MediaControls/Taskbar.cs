@@ -10,7 +10,6 @@
  *  2017-05-16  | Initial design
  */
 
-using System;
 using System.Drawing;
 using System.Runtime.InteropServices;
 

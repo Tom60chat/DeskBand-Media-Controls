@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Media;
 using Windows.UI.ViewManagement;
 
-namespace MediaControls.DeskBand
+namespace MediaControls
 {
     public static class LightDarkModeGetter
     {

@@ -2,7 +2,7 @@
 using System.Windows.Media;
 using Windows.Media.Control;
 
-namespace MediaControls.DeskBand
+namespace MediaControls
 {
     public class PlayerModel
     {
