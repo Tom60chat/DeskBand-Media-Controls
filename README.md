@@ -15,7 +15,7 @@ Control your music from your taskbar.
 - Support TaskBar resize and orientation.
 
 ## Installation
-Only works on Windows 10 version 1809 (build 17763) or newer, not Windows 11 see #8
+Only works on Windows 10 version 1809 (build 17763) or newer, not Windows 11 see [#8](https://github.com/Tom60chat/DeskBand-Media-Controls/issues/8)
 
 - [Download](https://github.com/Tom60chat/DeskBand-Media-Controls/releases/tag/release) the installer.
 - Click on the install button.
